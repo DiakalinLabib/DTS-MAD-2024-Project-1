@@ -18,4 +18,8 @@ const changeTodoStatus = (id) => {
     });
 };
 
-export { getTodos, changeTodoStatus };
+const deleteTodo = (id) => {
+    return todos.filter((todo) => todo.id !== id);
+};
+
+export { getTodos, changeTodoStatus, deleteTodo };

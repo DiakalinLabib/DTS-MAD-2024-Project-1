@@ -1,16 +1,20 @@
-const TodoItem = ({ todo, handleStatus }) => {
+const TodoItem = ({ todo, handleStatus, handleDetete }) => {
     return (
-        <div
-            className="border-solid border-2 border-gray-400 p-2 rounded-xl m-1 min-w-96"
-            onClick={() => {
-                handleStatus(todo.id);
-            }}
-        >
-            <p className="select-none">{
+        <div className="flex justify-between border-solid border-2 border-gray-400 p-2 rounded-xl m-1 min-w-96">
+            <p
+                onClick={() => {
+                    handleStatus(todo.id);
+                }}                className="select-none">{
                 todo.done
                     ? <>✓ <del>{todo.text}</del></>
                     : <>➤ {todo.text}</>
             }</p>
+            <span 
+                className="hover:text-red-400 cursor-pointer select-none"
+                onClick={() => {
+                    handleDetete(todo.id);
+                }}
+            >☓</span>
         </div>
     );
 };
