@@ -1,4 +1,9 @@
-const TodoItem = ({ todo, handleStatus, handleDetete }) => {
+import { useContext } from "react";
+import { TodoContext } from "./App";
+
+const TodoItem = ({ todo }) => {
+    const {handleStatus, handleDetete} = useContext(TodoContext);
+
     return (
         <div className="flex justify-between border-solid border-2 border-gray-400 p-2 rounded-xl m-1 min-w-96">
             <p

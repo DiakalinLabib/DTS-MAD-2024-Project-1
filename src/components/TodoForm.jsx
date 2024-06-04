@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { TodoContext } from "./App";
 
-const TodoForm = ({ handleAdd }) => {
+const TodoForm = () => {
     const [text, setText] = useState('');
+    const {handleAdd} = useContext(TodoContext);
 
     const handleInputText = (e) => {
         setText(e.target.value);

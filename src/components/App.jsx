@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { createContext, useState } from "react";
 import { addTodo, changeTodoStatus, deleteTodo, getTodos } from "../database/todos";
 import Body from "./Body";
 import Footer from "./Footer";
 import Header from "./Header"
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
+
+export const TodoContext = createContext();
 
 const AppAuth = () => {
     return (
@@ -28,25 +30,25 @@ const AppTodo = () => {
     };
 
     const handleAdd = (text) => {
+        console.log(text);
+
         setTodos(addTodo(text));
     };
 
     return (
-        <div className="h-screen flex items-center justify-center flex-col">
-            <div className="card border-double border-4 border-gray-600">
-                <div className="card-body">
-                    <h3 className="text-3xl mb-4">Todo App</h3>
+        <TodoContext.Provider value={{ handleStatus, handleDetete, handleAdd }}>
+            <div className="h-screen flex items-center justify-center flex-col">
+                <div className="card border-double border-4 border-gray-600">
+                    <div className="card-body">
+                        <h3 className="text-3xl mb-4">Todo App</h3>
 
-                    <TodoForm handleAdd={handleAdd} />
+                        <TodoForm />
 
-                    <TodoList 
-                        todos={todos} 
-                        handleStatus={handleStatus}
-                        handleDetete={handleDetete}
-                    />
+                        <TodoList todos={todos} />
+                    </div>
                 </div>
             </div>
-        </div>
+        </TodoContext.Provider>
     );
 };
 
