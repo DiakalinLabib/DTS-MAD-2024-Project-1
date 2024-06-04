@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { addTodo, changeTodoStatus, deleteTodo, getTodos } from "../database/todos";
+import { addTodo, changeTodoStatus, deleteTodo, getSortedTodos } from "../database/todos";
 import Body from "./Body";
 import Footer from "./Footer";
 import Header from "./Header"
@@ -19,7 +19,7 @@ const AppAuth = () => {
 };
 
 const AppTodo = () => {
-    const [todos, setTodos] = useState(getTodos());
+    const [todos, setTodos] = useState(getSortedTodos());
 
     const handleStatus = (id) => {
         setTodos(changeTodoStatus(id));
@@ -30,8 +30,6 @@ const AppTodo = () => {
     };
 
     const handleAdd = (text) => {
-        console.log(text);
-
         setTodos(addTodo(text));
     };
 

@@ -8,6 +8,16 @@ const getTodos = () => {
     return todos;
 };
 
+const getSortedTodos = (type) => {
+    return todos.sort((a, b) => {
+        if (type === 'asc') {
+            return b.done - a.done || a.id - b.id;
+        }
+
+        return a.done -  b.done || b.id - a.id;
+    });
+};
+
 const changeTodoStatus = (id) => {
     todos = todos.map((todo) => {
         if (todo.id === id) {
@@ -36,4 +46,4 @@ const addTodo = (text) => {
     return todos;
 };
 
-export { getTodos, changeTodoStatus, deleteTodo, addTodo };
+export { getTodos, changeTodoStatus, deleteTodo, addTodo, getSortedTodos };
