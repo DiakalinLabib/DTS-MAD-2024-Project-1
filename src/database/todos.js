@@ -8,4 +8,14 @@ const getTodos = () => {
     return todos;
 };
 
-export { getTodos };
+const changeTodoStatus = (id) => {
+    return todos.map((todo) => {
+        if (todo.id === id) {
+            todo.done = !todo.done;
+        }
+
+        return todo;
+    });
+};
+
+export { getTodos, changeTodoStatus };
