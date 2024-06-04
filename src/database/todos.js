@@ -22,4 +22,12 @@ const deleteTodo = (id) => {
     return todos.filter((todo) => todo.id !== id);
 };
 
-export { getTodos, changeTodoStatus, deleteTodo };
+const addTodo = (text) => {
+    return todos.concat({
+        id: todos.length + 1,
+        text,
+        done: false,
+    });
+};
+
+export { getTodos, changeTodoStatus, deleteTodo, addTodo };
