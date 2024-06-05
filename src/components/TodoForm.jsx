@@ -16,6 +16,7 @@ const TodoForm = () => {
             setText('');
         }}>
             <input
+                required
                 onChange={handleInputText}
                 type="text" 
                 className="border-solid border-2 border-gray-400 p-2 rounded-xl m-1 min-w-96"

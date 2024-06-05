@@ -1,15 +1,15 @@
-let todos = [
-    { id: 1, text: 'Learn React', done: true },
-    { id: 2, text: 'Learn Vue', done: false },
-    { id: 3, text: 'Learn Angular', done: false },
-];
-
 const getTodos = () => {
-    return todos;
+    if (!localStorage.getItem("todos")) localStorage.setItem("todos", JSON.stringify([]));
+
+    return JSON.parse(localStorage.getItem("todos"));
+};
+
+const setTodos = (todos) => {
+    localStorage.setItem("todos", JSON.stringify(todos));
 };
 
 const getSortedTodos = (type) => {
-    return todos.sort((a, b) => {
+    return getTodos().sort((a, b) => {
         if (type === 'asc') {
             return b.done - a.done || a.id - b.id;
         }
@@ -19,31 +19,31 @@ const getSortedTodos = (type) => {
 };
 
 const changeTodoStatus = (id) => {
-    todos = todos.map((todo) => {
+    setTodos(getTodos().map((todo) => {
         if (todo.id === id) {
             todo.done = !todo.done;
         }
 
         return todo;
-    });
+    }));
 
-    return todos;
+    return getSortedTodos();
 };
 
 const deleteTodo = (id) => {
-    todos = todos.filter((todo) => todo.id !== id);
+    setTodos(getTodos().filter((todo) => todo.id !== id));
 
-    return todos;
+    return getSortedTodos();
 };
 
 const addTodo = (text) => {
-    todos = todos.concat({
-        id: todos.length + 1,
+    setTodos(getTodos().concat({
+        id: getTodos().length + 1,
         text,
         done: false,
-    });
+    }));
 
-    return todos;
+    return getSortedTodos();
 };
 
 export { getTodos, changeTodoStatus, deleteTodo, addTodo, getSortedTodos };
